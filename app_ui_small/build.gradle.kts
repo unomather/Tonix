@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -32,6 +33,10 @@ kotlin {
             implementation(libs.koin.android)
         }
         commonMain.dependencies {
+            /** PROJECT **/
+            implementation(projects.shared)
+            implementation(projects.appShared.coreUi)
+            implementation(projects.appShared.ui)
             /** COMPOSE **/
             implementation(compose.runtime)
             implementation(compose.foundation)
