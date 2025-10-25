@@ -27,6 +27,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            /** PROJECT **/
+            implementation(projects.shared)
             /** COMPOSE **/
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -38,6 +40,7 @@ kotlin {
             implementation(libs.bundles.kotlin)
             implementation(libs.bundles.coil)
             implementation(libs.bundles.koin)
+            implementation(libs.bundles.mvi)
         }
     }
 }

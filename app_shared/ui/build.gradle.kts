@@ -27,6 +27,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            /** PROJECT **/
+            implementation(projects.shared)
+            implementation(projects.appShared.coreUi)
             /** COMPOSE **/
             implementation(compose.runtime)
             implementation(compose.foundation)

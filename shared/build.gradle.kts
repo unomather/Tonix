@@ -17,11 +17,7 @@ kotlin {
     iosSimulatorArm64()
     
     jvm()
-    
-    js {
-        browser()
-    }
-    
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
@@ -29,7 +25,8 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            implementation(libs.coroutines)
+            implementation(libs.bundles.koin)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -40,10 +37,6 @@ kotlin {
 android {
     namespace = "tonix.app.shared"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }

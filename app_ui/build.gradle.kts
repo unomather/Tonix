@@ -43,6 +43,8 @@ kotlin {
         }
         commonMain.dependencies {
             /** PROJECT **/
+            implementation(projects.shared)
+            implementation(projects.appShared.ui)
             implementation(projects.appUiLarge)
             implementation(projects.appUiSmall)
             /** COMPOSE **/
@@ -58,6 +60,9 @@ kotlin {
             implementation(libs.bundles.coil)
             implementation(libs.bundles.koin)
             implementation(libs.bundles.decompose)
+        }
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
         }
     }
 }
@@ -82,10 +87,6 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
