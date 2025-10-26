@@ -57,7 +57,7 @@ private fun Content(listener: CreateImportWalletListener?) = SnowflakesContainer
 }
 
 @Composable
-private fun AppLogo() {
+internal fun AppLogo() {
     AppImage(
         image = Res.drawable.ic_app_logo_foreground,
         modifier = Modifier
