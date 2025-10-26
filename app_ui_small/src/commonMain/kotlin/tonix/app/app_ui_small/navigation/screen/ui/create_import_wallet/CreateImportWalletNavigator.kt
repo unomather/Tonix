@@ -15,6 +15,6 @@ internal class CreateImportWalletNavigatorImpl(
     }
 
     override fun toImportWallet() {
-
+        appScreensNavigator.toImportWallet()
     }
 }

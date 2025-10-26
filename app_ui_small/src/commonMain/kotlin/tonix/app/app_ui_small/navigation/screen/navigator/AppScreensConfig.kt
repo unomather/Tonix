@@ -11,4 +11,7 @@ internal sealed interface AppScreensConfig {
     /** CREATE IMPORT WALLET **/
     @Serializable
     data object CreateImportWalletConfig: AppScreensConfig
+
+    @Serializable
+    data object ImportWalletConfig: AppScreensConfig
 }

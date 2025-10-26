@@ -30,12 +30,12 @@ import tonix.app.resources.create_new_wallet
 import tonix.app.resources.import_existing_wallet
 
 @Composable
-internal fun CreateImportWalletMainScreen(state: CreateImportWalletState) {
-    Content()
+internal fun CreateImportWalletMainScreen(listener: CreateImportWalletListener?) {
+    Content(listener)
 }
 
 @Composable
-private fun Content() = SnowflakesContainer(
+private fun Content(listener: CreateImportWalletListener?) = SnowflakesContainer(
     modifier = Modifier
         .fillMaxSize()
         .background(colors.background)
@@ -51,8 +51,8 @@ private fun Content() = SnowflakesContainer(
         Spacer(modifier = Modifier.weight(1f))
         Description()
         Spacer(modifier = Modifier.weight(1f))
-        CreateNewWalletButton()
-        ImportExistingWalletButton()
+        CreateNewWalletButton(listener)
+        ImportExistingWalletButton(listener)
     }
 }
 
@@ -90,11 +90,11 @@ private fun Description() {
 }
 
 @Composable
-private fun CreateNewWalletButton() {
+private fun CreateNewWalletButton(listener: CreateImportWalletListener?) {
     AppButton(
         text = stringResource(Res.string.create_new_wallet),
         state = AppButtonState.ACCENT,
-        onClick = {},
+        onClick = { listener?.onCreateWalletClick() },
         modifier = Modifier
             .padding(start = 24.dp, end = 24.dp, top = 16.dp)
             .fillMaxWidth()
@@ -103,11 +103,11 @@ private fun CreateNewWalletButton() {
 }
 
 @Composable
-private fun ImportExistingWalletButton() {
+private fun ImportExistingWalletButton(listener: CreateImportWalletListener?) {
     AppButton(
         text = stringResource(Res.string.import_existing_wallet),
         state = AppButtonState.DEFAULT,
-        onClick = {},
+        onClick = { listener?.onImportWalletClick() },
         modifier = Modifier
             .padding(horizontal = 24.dp, vertical = 16.dp)
             .fillMaxWidth()

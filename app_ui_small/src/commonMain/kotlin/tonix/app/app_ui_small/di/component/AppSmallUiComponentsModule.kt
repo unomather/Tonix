@@ -12,6 +12,9 @@ import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletViewModel
+import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
+import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletNavigator
+import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashComponent
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashViewModel
@@ -45,6 +48,13 @@ internal val moduleAppSmallUiComponents = module {
             context = context,
             viewModel = context.getViewModel<CreateImportWalletViewModel>(),
             navigator = get<CreateImportWalletNavigator> { parametersOf(context) }
+        )
+    }
+    factory { (context: ComponentContext) ->
+        ImportWalletComponent(
+            context = context,
+            viewModel = context.getViewModel<ImportWalletViewModel>(),
+            navigator = get<ImportWalletNavigator> { parametersOf(context) }
         )
     }
 }
