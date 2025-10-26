@@ -13,6 +13,7 @@ kotlin {
         namespace = "tonix.app.app_shared.core_ui"
         compileSdk = 36
         minSdk = 24
+        experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
     }
 
     iosArm64()
@@ -44,4 +45,10 @@ kotlin {
             implementation(libs.bundles.decompose)
         }
     }
+}
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "tonix.app.resources"
+    generateResClass = always
 }
