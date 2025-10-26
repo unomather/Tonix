@@ -16,6 +16,10 @@ kotlin {
         minSdk = 24
     }
 
+    compilerOptions {
+        freeCompilerArgs.add("-Xcontext-parameters")
+    }
+
     iosArm64()
     iosSimulatorArm64()
     jvm()

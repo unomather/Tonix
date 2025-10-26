@@ -1,4 +1,4 @@
-package tonix.app.app_ui_small.navigation.screen.ui.splash
+package tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -7,26 +7,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import tonix.app.app_shared.core_ui.components.image.AppImage
 import tonix.app.app_shared.core_ui.theme.CustomTheme.colors
-import tonix.app.resources.Res
-import tonix.app.resources.app_logo_foreground
 
-context(transition: SharedTransitionScope, visibility: AnimatedVisibilityScope)
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-internal fun SplashMainScreen() {
+context(transition: SharedTransitionScope, visibility: AnimatedVisibilityScope)
+internal fun CreateImportWalletMainScreen(state: CreateImportWalletState) {
     Box(
-        contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(colors.background)
-    ) {
-        AppImage(
-            image = Res.drawable.app_logo_foreground,
-            color = colors.text
-        )
-    }
+            .background(colors.accent)
+    )
 }

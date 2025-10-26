@@ -1,11 +1,13 @@
 package tonix.app.app_ui_small.navigation.screen.navigator
 
+import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.backhandler.BackHandler
+import org.koin.core.component.KoinComponent
 
-internal interface AppScreensNavigator {
+internal interface AppScreensNavigator: KoinComponent {
     /**
      * ROUTER
      */
@@ -26,5 +28,6 @@ internal interface AppScreensNavigator {
      * CONTENT
      */
     @Composable
+    context(visibility: AnimatedVisibilityScope)
     fun getContentByChild(child: AppScreensChild)
 }

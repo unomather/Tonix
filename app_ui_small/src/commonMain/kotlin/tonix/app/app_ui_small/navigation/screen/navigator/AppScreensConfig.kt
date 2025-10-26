@@ -7,4 +7,8 @@ internal sealed interface AppScreensConfig {
     /** START **/
     @Serializable
     data object SplashConfig: AppScreensConfig
+
+    /** CREATE IMPORT WALLET **/
+    @Serializable
+    data object CreateImportWalletConfig: AppScreensConfig
 }
