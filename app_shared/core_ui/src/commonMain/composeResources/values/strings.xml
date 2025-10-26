@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Tonix</string>
+    <!-- CREATE IMPORT WALLET -->
+    <string name="create_new_wallet">Create new wallet</string>
+    <string name="import_existing_wallet">Import existing wallet</string>
+    <string name="create_import_wallet">Create new or import\nexisting wallet</string>
+</resources>

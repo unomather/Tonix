@@ -16,12 +16,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
 import tonix.app.app_shared.core_ui.components.button.AppButton
 import tonix.app.app_shared.core_ui.components.button.AppButtonState
 import tonix.app.app_shared.core_ui.components.snowflakes_container.SnowflakesContainer
 import tonix.app.app_shared.core_ui.theme.CustomTheme.colors
 import tonix.app.app_shared.core_ui.theme.CustomTheme.shapes
 import tonix.app.app_shared.core_ui.theme.CustomTheme.typography
+import tonix.app.resources.Res
+import tonix.app.resources.app_name
+import tonix.app.resources.create_import_wallet
+import tonix.app.resources.create_new_wallet
+import tonix.app.resources.import_existing_wallet
 
 @Composable
 internal fun CreateImportWalletMainScreen(state: CreateImportWalletState) {
@@ -53,7 +59,7 @@ private fun Content() = SnowflakesContainer(
 @Composable
 private fun AppName() {
     Text(
-        text = "Tonix",
+        text = stringResource(Res.string.app_name),
         color = colors.text,
         style = typography.h1,
         modifier = Modifier
@@ -68,7 +74,7 @@ private fun AppName() {
 @Composable
 private fun Description() {
     Text(
-        text = "Создайте новый или подключите существующий кошелёк",
+        text = stringResource(Res.string.create_import_wallet),
         color = colors.text,
         style = typography.h3,
         textAlign = TextAlign.Center,
@@ -86,7 +92,7 @@ private fun Description() {
 @Composable
 private fun CreateNewWalletButton() {
     AppButton(
-        text = "Создать новый кошелёк",
+        text = stringResource(Res.string.create_new_wallet),
         state = AppButtonState.ACCENT,
         onClick = {},
         modifier = Modifier
@@ -99,7 +105,7 @@ private fun CreateNewWalletButton() {
 @Composable
 private fun ImportExistingWalletButton() {
     AppButton(
-        text = "Подключить существующий",
+        text = stringResource(Res.string.import_existing_wallet),
         state = AppButtonState.DEFAULT,
         onClick = {},
         modifier = Modifier
