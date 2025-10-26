@@ -10,11 +10,14 @@ import com.arkivanov.decompose.extensions.compose.experimental.stack.ChildStack
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
+import tonix.app.app_shared.core_ui.theme.AppTheme
 
 @Composable
 fun AppSmall(appComponentContext: ComponentContext) {
     val appComponent = koinInject<AppComponent> { parametersOf(appComponentContext) }
-    Screens(appComponent.navigator)
+    AppTheme {
+        Screens(appComponent.navigator)
+    }
 }
 
 @OptIn(ExperimentalDecomposeApi::class)

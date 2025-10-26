@@ -45,6 +45,7 @@ kotlin {
             /** PROJECT **/
             implementation(projects.shared)
             implementation(projects.appShared.ui)
+            implementation(projects.appShared.coreUi)
             implementation(projects.appUiLarge)
             implementation(projects.appUiSmall)
             /** COMPOSE **/
