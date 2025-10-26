@@ -54,9 +54,7 @@ internal class AppScreensNavigatorImpl(
         SplashChild(splashComponent)
     }
 
-    @OptIn(ExperimentalSharedTransitionApi::class)
     @Composable
-    context(transition: SharedTransitionScope, visibility: AnimatedVisibilityScope)
     private fun SplashContent(child: SplashChild) {
         child.component.subscribeState()
         SplashMainScreen()
@@ -70,9 +68,7 @@ internal class AppScreensNavigatorImpl(
         CreateImportWalletChild(createImportWalletComponent)
     }
 
-    @OptIn(ExperimentalSharedTransitionApi::class)
     @Composable
-    context(transition: SharedTransitionScope, visibility: AnimatedVisibilityScope)
     private fun CreateImportWalletContent(child: CreateImportWalletChild) {
         val state by child.component.subscribeState()
         CreateImportWalletMainScreen(state)

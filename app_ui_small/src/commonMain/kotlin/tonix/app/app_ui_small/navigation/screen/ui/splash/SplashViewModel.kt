@@ -9,7 +9,7 @@ private typealias Ctx = PipelineContext<SplashState, SplashIntent, SplashAction>
 
 internal class SplashViewModel: BaseViewModel<SplashState, SplashIntent, SplashAction>(SplashState.Default) {
     override suspend fun Ctx.init() {
-        delay(3000)
+        delay(500)
         action(NavigateToCreateImportWallet)
     }
 }

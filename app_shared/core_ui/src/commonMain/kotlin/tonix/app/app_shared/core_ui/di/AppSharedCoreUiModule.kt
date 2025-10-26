@@ -1,5 +1,6 @@
 package tonix.app.app_shared.core_ui.di
 
+import androidx.compose.ui.text.font.FontFamily
 import org.koin.dsl.module
 import tonix.app.app_shared.core_ui.theme.colors.AppColors
 import tonix.app.app_shared.core_ui.theme.colors.AppColorsImpl
@@ -20,5 +21,7 @@ val moduleAppSharedCoreUi = module {
     /**
      * TYPOGRAPHY
      */
-    single<AppTypography> { AppTypographyImpl() }
+    single<AppTypography> { (fontFamily: FontFamily) ->
+        AppTypographyImpl(fontFamily)
+    }
 }

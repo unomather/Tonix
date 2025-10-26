@@ -5,6 +5,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject
 import tonix.app.app_shared.core_ui.theme.colors.AppColors
 import tonix.app.app_shared.core_ui.theme.colors.data.AppColorsData
@@ -12,6 +15,13 @@ import tonix.app.app_shared.core_ui.theme.shape.AppShapes
 import tonix.app.app_shared.core_ui.theme.typography.AppTypography
 import tonix.app.app_shared.core_ui.theme.window_insets.LocalWindowInsetsData
 import tonix.app.app_shared.core_ui.theme.window_insets.getWindowInsets
+import tonix.app.resources.Res
+import tonix.app.resources.inter_black
+import tonix.app.resources.inter_bold
+import tonix.app.resources.inter_extra_bold
+import tonix.app.resources.inter_medium
+import tonix.app.resources.inter_regular
+import tonix.app.resources.inter_semi_bold
 
 /**
  * CUSTOM THEME
@@ -33,9 +43,9 @@ object CustomTheme {
  */
 @Composable
 internal fun ProvideCustomTheme(
-    colors: AppColors = koinInject<AppColors>(), // TODO: Use specific useCase with [collectAsState] after MVP
+    typography: AppTypography,
+    colors: AppColors = koinInject<AppColors>(),
     shapes: AppShapes = koinInject<AppShapes>(),
-    typography: AppTypography = koinInject<AppTypography>(),
     windowInsets: LocalWindowInsetsData = getWindowInsets().value,
     content: @Composable () -> Unit
 ) {
@@ -57,6 +67,37 @@ internal fun ProvideCustomTheme(
         content()
     }
 }
+
+/**
+ * FONT FAMILY
+ */
+@Composable
+internal fun getAppFontFamily() = FontFamily(
+    Font(
+        resource = Res.font.inter_regular,
+        weight = FontWeight.W400
+    ),
+    Font(
+        resource = Res.font.inter_medium,
+        weight = FontWeight.W500
+    ),
+    Font(
+        resource = Res.font.inter_semi_bold,
+        weight = FontWeight.W600
+    ),
+    Font(
+        resource = Res.font.inter_bold,
+        weight = FontWeight.W700
+    ),
+    Font(
+        resource = Res.font.inter_extra_bold,
+        weight = FontWeight.W800
+    ),
+    Font(
+        resource = Res.font.inter_black,
+        weight = FontWeight.W900
+    )
+)
 
 /**
  * LOCAL COMPOSITIONS
