@@ -4,6 +4,7 @@ import tonix.app.app_ui_small.navigation.base.BaseChild
 import tonix.app.app_ui_small.navigation.base.BaseChildComponent
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeComponent
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashComponent
 
 internal sealed class AppScreensChild(
@@ -19,4 +20,7 @@ internal sealed class AppScreensChild(
     ): AppScreensChild(component)
 
     data class ImportWalletChild(override val component: ImportWalletComponent): AppScreensChild(component)
+
+    /** PIN CODE **/
+    data class PinCodeChild(override val component: PinCodeComponent): AppScreensChild(component)
 }

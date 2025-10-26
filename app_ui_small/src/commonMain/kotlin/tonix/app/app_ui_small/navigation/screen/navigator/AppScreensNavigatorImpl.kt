@@ -14,16 +14,21 @@ import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.CreateImportWalletChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.ImportWalletChild
+import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.PinCodeChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.SplashChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.CreateImportWalletConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.ImportWalletConfig
+import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.PinCodeConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.SplashConfig
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletMainScreen
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeComponent
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashComponent
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashMainScreen
+import kotlin.getValue
 
 internal class AppScreensNavigatorImpl(
     context: ComponentContext,
@@ -48,6 +53,7 @@ internal class AppScreensNavigatorImpl(
         is SplashConfig -> buildSplashChild(context)
         is CreateImportWalletConfig -> buildCreateImportWalletChild(context)
         is ImportWalletConfig -> buildImportWalletChild(context)
+        is PinCodeConfig -> buildPinCodeChild(context)
     }
 
     /**
@@ -93,10 +99,31 @@ internal class AppScreensNavigatorImpl(
     }
 
     /**
+     * PIN CODE
+     */
+    private fun buildPinCodeChild(context: ComponentContext) = run {
+        val pinCodeComponent by inject<PinCodeComponent> { parametersOf(context) }
+        PinCodeChild(pinCodeComponent)
+    }
+
+    @Composable
+    private fun PinCodeContent(child: PinCodeChild) {
+        val state by child.component.subscribeState()
+        PinCodeMainScreen(
+            state = state,
+            listener = child.component
+        )
+    }
+
+    /**
      * SCREENS NAVIGATION
      */
     override fun toImportWallet() {
         navigation.pushNew(ImportWalletConfig)
+    }
+
+    override fun toPinCode() {
+        navigation.pushNew(PinCodeConfig)
     }
 
     /**
@@ -117,6 +144,7 @@ internal class AppScreensNavigatorImpl(
             is SplashChild -> SplashContent(child)
             is CreateImportWalletChild -> CreateImportWalletContent(child)
             is ImportWalletChild -> ImportWalletContent(child)
+            is PinCodeChild -> PinCodeContent(child)
         }
     }
 }

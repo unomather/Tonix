@@ -17,6 +17,7 @@ internal interface AppScreensNavigator: KoinComponent {
      * SCREENS NAVIGATION
      */
     fun toImportWallet()
+    fun toPinCode()
 
     /**
      * BACK NAVIGATION

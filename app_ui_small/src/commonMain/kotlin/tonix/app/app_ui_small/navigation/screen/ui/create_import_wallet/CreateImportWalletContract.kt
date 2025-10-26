@@ -14,7 +14,7 @@ internal sealed interface CreateImportWalletState: BaseState {
 }
 
 internal sealed interface CreateImportWalletAction: BaseAction {
-    data object NavigateToCreateWallet: CreateImportWalletAction
+    data object NavigateToCreatePinCode: CreateImportWalletAction
     data object NavigateToImportWallet: CreateImportWalletAction
 }
 

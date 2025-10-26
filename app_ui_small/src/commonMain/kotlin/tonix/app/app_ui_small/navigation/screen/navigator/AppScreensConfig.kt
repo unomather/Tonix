@@ -14,4 +14,8 @@ internal sealed interface AppScreensConfig {
 
     @Serializable
     data object ImportWalletConfig: AppScreensConfig
+
+    /** PIN CODE **/
+    @Serializable
+    data object PinCodeConfig: AppScreensConfig
 }
