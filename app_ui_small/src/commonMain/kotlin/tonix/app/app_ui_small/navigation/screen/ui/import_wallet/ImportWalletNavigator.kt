@@ -4,8 +4,7 @@ import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensNavigator
 
 internal interface ImportWalletNavigator {
     fun back()
-    fun toExistingWallet()
-    fun toTestnetWallet()
+    fun toSuccessImport()
 }
 
 internal class ImportWalletNavigatorImpl(
@@ -15,11 +14,7 @@ internal class ImportWalletNavigatorImpl(
         appScreensNavigator.navigateBack()
     }
 
-    override fun toExistingWallet() {
-
-    }
-
-    override fun toTestnetWallet() {
+    override fun toSuccessImport() {
 
     }
 }

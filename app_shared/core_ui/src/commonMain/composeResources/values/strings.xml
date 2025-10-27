@@ -5,6 +5,10 @@
     <string name="create_new_wallet">Create new wallet</string>
     <string name="import_existing_wallet">Import existing wallet</string>
     <string name="create_import_wallet">Create new or import\nexisting wallet</string>
+    <!-- IMPORT WALLET -->
+    <string name="enter_secret_words_title">Enter seed phrase</string>
+    <string name="enter_secret_words_description">To import a wallet, enter the 24 secret words that you got when you created the wallet</string>
+    <string name="paste">Paste</string>
     <!-- PIN CODE -->
     <string name="create_pin_code">Create pin code</string>
     <string name="repeat_pin_code">Repeat pin code</string>

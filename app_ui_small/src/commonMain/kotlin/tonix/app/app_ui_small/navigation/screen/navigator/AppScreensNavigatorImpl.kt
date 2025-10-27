@@ -96,7 +96,10 @@ internal class AppScreensNavigatorImpl(
     @Composable
     private fun ImportWalletContent(child: ImportWalletChild) {
         val state by child.component.subscribeState()
-        ImportWalletMainScreen(state)
+        ImportWalletMainScreen(
+            state = state,
+            listener = child.component
+        )
     }
 
     /**
