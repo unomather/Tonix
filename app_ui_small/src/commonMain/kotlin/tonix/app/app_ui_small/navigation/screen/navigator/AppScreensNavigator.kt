@@ -6,6 +6,7 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.backhandler.BackHandler
 import org.koin.core.component.KoinComponent
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
 
 internal interface AppScreensNavigator: KoinComponent {
     /**
@@ -17,7 +18,7 @@ internal interface AppScreensNavigator: KoinComponent {
      * SCREENS NAVIGATION
      */
     fun toImportWallet()
-    fun toPinCode()
+    fun toPinCode(mode: PinCodeMode)
 
     /**
      * BACK NAVIGATION

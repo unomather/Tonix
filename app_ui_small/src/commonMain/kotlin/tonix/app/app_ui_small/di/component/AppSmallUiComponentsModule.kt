@@ -18,6 +18,7 @@ import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletVie
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeComponent
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeViewModel
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashComponent
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashViewModel
@@ -63,10 +64,10 @@ internal val moduleAppSmallUiComponents = module {
     /**
      * PIN CODE
      */
-    factory { (context: ComponentContext) ->
+    factory { (mode: PinCodeMode, context: ComponentContext) ->
         PinCodeComponent(
             context = context,
-            viewModel = context.getViewModel<PinCodeViewModel>(),
+            viewModel = context.getViewModel<PinCodeViewModel> { parametersOf(mode) },
             navigator = get<PinCodeNavigator> { parametersOf(context) }
         )
     }

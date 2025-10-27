@@ -26,6 +26,7 @@ import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletCom
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeComponent
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeMainScreen
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashComponent
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashMainScreen
 import kotlin.getValue
@@ -53,7 +54,7 @@ internal class AppScreensNavigatorImpl(
         is SplashConfig -> buildSplashChild(context)
         is CreateImportWalletConfig -> buildCreateImportWalletChild(context)
         is ImportWalletConfig -> buildImportWalletChild(context)
-        is PinCodeConfig -> buildPinCodeChild(context)
+        is PinCodeConfig -> buildPinCodeChild(config, context)
     }
 
     /**
@@ -101,8 +102,8 @@ internal class AppScreensNavigatorImpl(
     /**
      * PIN CODE
      */
-    private fun buildPinCodeChild(context: ComponentContext) = run {
-        val pinCodeComponent by inject<PinCodeComponent> { parametersOf(context) }
+    private fun buildPinCodeChild(config: PinCodeConfig, context: ComponentContext) = run {
+        val pinCodeComponent by inject<PinCodeComponent> { parametersOf(config.mode, context) }
         PinCodeChild(pinCodeComponent)
     }
 
@@ -122,8 +123,8 @@ internal class AppScreensNavigatorImpl(
         navigation.pushNew(ImportWalletConfig)
     }
 
-    override fun toPinCode() {
-        navigation.pushNew(PinCodeConfig)
+    override fun toPinCode(mode: PinCodeMode) {
+        navigation.pushNew(PinCodeConfig(mode))
     }
 
     /**
