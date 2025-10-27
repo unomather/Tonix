@@ -5,4 +5,9 @@
     <string name="create_new_wallet">Create new wallet</string>
     <string name="import_existing_wallet">Import existing wallet</string>
     <string name="create_import_wallet">Create new or import\nexisting wallet</string>
+    <!-- PIN CODE -->
+    <string name="create_pin_code">Create pin code</string>
+    <string name="repeat_pin_code">Repeat pin code</string>
+    <string name="check_pin_code">Enter pin code</string>
+    <string name="forgot_pin_code">Forgot pin code?</string>
 </resources>

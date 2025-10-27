@@ -25,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import tonix.app.app_shared.core_ui.components.image.AppImage
 import tonix.app.app_shared.core_ui.components.snowflakes_container.SnowflakesContainer
@@ -39,6 +40,8 @@ import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeItem.Pin
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeItem.PinCodeIcon
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.getPinCodeItems
+import tonix.app.resources.Res
+import tonix.app.resources.forgot_pin_code
 
 @Composable
 internal fun PinCodeMainScreen(
@@ -59,7 +62,7 @@ internal fun PinCodeMainScreen(
         ) {
             AppLogo()
             Spacer(modifier = Modifier.weight(1f))
-            Description()
+            Title(state)
             Dots()
             DigitsGrid(
                 state = state,
@@ -78,9 +81,9 @@ internal fun PinCodeMainScreen(
  * DESCRIPTION
  */
 @Composable
-private fun Description() {
+private fun Title(state: PinCodeState) {
     Text(
-        text = "Create pin code",
+        text = state.title,
         color = colors.text,
         style = typography.body1.copy(fontWeight = FontWeight.Bold)
     )
@@ -170,7 +173,7 @@ private fun Digit(item: PinCodeItem) {
 @Composable
 private fun ForgotPinText() {
     Text(
-        text = "Forgot pin code?",
+        text = stringResource(Res.string.forgot_pin_code),
         color = colors.text,
         style = typography.body1,
         modifier = Modifier.padding(vertical = 48.dp)
