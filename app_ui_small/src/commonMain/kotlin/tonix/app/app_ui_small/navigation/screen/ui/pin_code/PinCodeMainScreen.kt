@@ -1,6 +1,10 @@
 package tonix.app.app_ui_small.navigation.screen.ui.pin_code
 
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +23,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +39,10 @@ import tonix.app.app_shared.core_ui.theme.CustomTheme.shapes
 import tonix.app.app_shared.core_ui.theme.CustomTheme.typography
 import tonix.app.app_shared.core_ui.theme.PreviewAppTheme
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.AppLogo
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState.Default
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState.Error
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState.Success
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeItem
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeItem.EmptySpace
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeItem.PinCodeDigit
@@ -63,7 +72,7 @@ internal fun PinCodeMainScreen(
             AppLogo()
             Spacer(modifier = Modifier.weight(1f))
             Title(state)
-            Dots()
+            Dots(state)
             DigitsGrid(
                 state = state,
                 listener = listener
@@ -81,9 +90,9 @@ internal fun PinCodeMainScreen(
  * DESCRIPTION
  */
 @Composable
-private fun Title(state: PinCodeState) {
+private fun Title(state: PinCodeState) = Crossfade(state.title) { title ->
     Text(
-        text = state.title,
+        text = title,
         color = colors.text,
         style = typography.body1.copy(fontWeight = FontWeight.Bold)
     )
@@ -93,12 +102,15 @@ private fun Title(state: PinCodeState) {
  * DOTS
  */
 @Composable
-private fun Dots() {
+private fun Dots(state: PinCodeState) {
     Row(
         modifier = Modifier.padding(vertical = 32.dp)
     ) {
-        repeat(6) { index ->
-            Dot()
+        repeat(PIN_CODE_LENGTH) { index ->
+            Dot(
+                isActive = index + 1 <= state.pinCode.length,
+                state = state.pinCodeDotsState
+            )
             if (index != 5) {
                 Spacer(modifier = Modifier.width(16.dp))
             }
@@ -107,13 +119,24 @@ private fun Dots() {
 }
 
 @Composable
-private fun Dot() {
+private fun Dot(
+    isActive: Boolean,
+    state: PinCodeDotsState
+) {
+    val backgroundColor by animateColorAsState(
+        animationSpec = tween(),
+        targetValue = when (state) {
+            is Default -> if (isActive) colors.text else colors.backgroundLight
+            is Error -> colors.error
+            is Success -> colors.success
+        }
+    )
     Box(
         modifier = Modifier
             .size(16.dp)
             .clip(shapes.circle)
             .background(
-                color = colors.backgroundLight,
+                color = backgroundColor,
                 shape = shapes.circle
             )
     )
@@ -135,13 +158,19 @@ private fun DigitsGrid(
         contentPadding = PaddingValues(horizontal = 32.dp)
     ) {
         items(state.pinCodeItems) { item ->
-            Digit(item)
+            Digit(
+                item = item,
+                onItemClick = { listener?.onPinCodeItemClick(item) }
+            )
         }
     }
 }
 
 @Composable
-private fun Digit(item: PinCodeItem) {
+private fun Digit(
+    item: PinCodeItem,
+    onItemClick: () -> Unit
+) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -151,6 +180,7 @@ private fun Digit(item: PinCodeItem) {
                 color = if (item is PinCodeDigit) colors.backgroundLight else Color.Transparent,
                 shape = shapes.circle
             )
+            .clickable { onItemClick() }
     ) {
         when (item) {
             is PinCodeDigit -> Text(
