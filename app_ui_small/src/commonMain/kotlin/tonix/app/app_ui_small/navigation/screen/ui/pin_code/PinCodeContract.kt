@@ -9,6 +9,7 @@ import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeItem
 internal const val PIN_CODE_LENGTH = 6
 
 internal sealed interface PinCodeIntent: BaseIntent {
+    data object OnBackClicked: PinCodeIntent
     data class OnPinCodeItemClicked(val item: PinCodeItem): PinCodeIntent
 }
 
@@ -20,8 +21,11 @@ internal data class PinCodeState(
     val isForgotPinCodeTextVisible: Boolean = false
 ): BaseState
 
-internal sealed interface PinCodeAction: BaseAction
+internal sealed interface PinCodeAction: BaseAction {
+    data object NavigateBack: PinCodeAction
+}
 
 internal sealed interface PinCodeListener {
+    fun onBackClick()
     fun onPinCodeItemClick(item: PinCodeItem)
 }

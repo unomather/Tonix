@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -29,16 +30,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import tonix.app.app_shared.core_ui.components.image.AppImage
 import tonix.app.app_shared.core_ui.components.snowflakes_container.SnowflakesContainer
+import tonix.app.app_shared.core_ui.components.toolbar.ToolbarBackIcon
 import tonix.app.app_shared.core_ui.theme.CustomTheme.colors
 import tonix.app.app_shared.core_ui.theme.CustomTheme.shapes
 import tonix.app.app_shared.core_ui.theme.CustomTheme.typography
 import tonix.app.app_shared.core_ui.theme.PreviewAppTheme
-import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.AppLogo
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState.Default
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState.Error
@@ -51,6 +53,7 @@ import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.getPinCodeItems
 import tonix.app.resources.Res
 import tonix.app.resources.forgot_pin_code
+import tonix.app.resources.ic_app_logo_foreground
 
 @Composable
 internal fun PinCodeMainScreen(
@@ -63,14 +66,16 @@ internal fun PinCodeMainScreen(
             .background(colors.background)
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()
                 .navigationBarsPadding()
         ) {
-            AppLogo()
+            ToolbarBackIcon {
+                listener?.onBackClick()
+            }
             Spacer(modifier = Modifier.weight(1f))
+            AppLogo()
             Title(state)
             Dots(state)
             DigitsGrid(
@@ -86,6 +91,19 @@ internal fun PinCodeMainScreen(
     }
 }
 
+@Composable
+private fun AppLogo() = Box(
+    contentAlignment = Alignment.Center,
+    modifier = Modifier.fillMaxWidth()
+) {
+    AppImage(
+        image = Res.drawable.ic_app_logo_foreground,
+        modifier = Modifier
+            .padding(bottom = 24.dp)
+            .size(64.dp)
+    )
+}
+
 /**
  * DESCRIPTION
  */
@@ -94,7 +112,9 @@ private fun Title(state: PinCodeState) = Crossfade(state.title) { title ->
     Text(
         text = title,
         color = colors.text,
-        style = typography.body1.copy(fontWeight = FontWeight.Bold)
+        style = typography.body1.copy(fontWeight = FontWeight.Bold),
+        textAlign = TextAlign.Center,
+        modifier = Modifier.fillMaxWidth()
     )
 }
 
@@ -104,7 +124,10 @@ private fun Title(state: PinCodeState) = Crossfade(state.title) { title ->
 @Composable
 private fun Dots(state: PinCodeState) {
     Row(
-        modifier = Modifier.padding(vertical = 32.dp)
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .padding(vertical = 32.dp)
+            .fillMaxWidth()
     ) {
         repeat(PIN_CODE_LENGTH) { index ->
             Dot(

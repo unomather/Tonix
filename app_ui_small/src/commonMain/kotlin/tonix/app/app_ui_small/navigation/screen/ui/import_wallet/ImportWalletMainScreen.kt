@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import tonix.app.app_shared.core_ui.components.button.AppButton
 import tonix.app.app_shared.core_ui.components.button.AppButtonState
+import tonix.app.app_shared.core_ui.components.snowflakes_container.SnowflakesContainer
 import tonix.app.app_shared.core_ui.components.text_field.AppTextField
 import tonix.app.app_shared.core_ui.components.toolbar.ToolbarBackIcon
 import tonix.app.app_shared.core_ui.components.toolbar.ToolbarDescription
@@ -39,26 +40,31 @@ internal fun ImportWalletMainScreen(
     state: ImportWalletState,
     listener: ImportWalletListener?
 ) {
-    Column(
+    SnowflakesContainer(
         modifier = Modifier
             .fillMaxSize()
             .background(colors.background)
-            .statusBarsPadding()
     ) {
-        ToolbarBackIcon {
-            listener?.onBackClick()
-        }
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .navigationBarsPadding()
+                .statusBarsPadding()
         ) {
-            Toolbar()
-            PasteButton()
-            InputFields()
-            ContinueButton()
+            ToolbarBackIcon {
+                listener?.onBackClick()
+            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .navigationBarsPadding()
+            ) {
+                Toolbar()
+                PasteButton()
+                InputFields()
+                ContinueButton()
+            }
         }
     }
 }

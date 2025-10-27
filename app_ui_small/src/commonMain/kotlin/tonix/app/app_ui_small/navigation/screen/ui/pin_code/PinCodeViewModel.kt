@@ -4,6 +4,8 @@ import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.getString
 import pro.respawn.flowmvi.api.PipelineContext
 import tonix.app.app_shared.core_ui.view_model.BaseViewModel
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeAction.NavigateBack
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeIntent.OnBackClicked
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeIntent.OnPinCodeItemClicked
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState.Default
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState.Error
@@ -46,6 +48,7 @@ internal class PinCodeViewModel(
 
     override suspend fun Ctx.handleIntents(intent: PinCodeIntent) {
         when (intent) {
+            is OnBackClicked -> action(NavigateBack)
             is OnPinCodeItemClicked -> handleOnPinCodeItemClicked(intent.item)
         }
     }
