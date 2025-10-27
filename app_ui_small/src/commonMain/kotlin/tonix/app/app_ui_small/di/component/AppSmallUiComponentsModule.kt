@@ -15,6 +15,9 @@ import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateIm
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletViewModel
+import tonix.app.app_ui_small.navigation.screen.ui.operation.OperationComponent
+import tonix.app.app_ui_small.navigation.screen.ui.operation.OperationNavigator
+import tonix.app.app_ui_small.navigation.screen.ui.operation.OperationViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeComponent
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeViewModel
@@ -69,6 +72,16 @@ internal val moduleAppSmallUiComponents = module {
             context = context,
             viewModel = context.getViewModel<PinCodeViewModel> { parametersOf(mode) },
             navigator = get<PinCodeNavigator> { parametersOf(context) }
+        )
+    }
+    /**
+     * OPERATION
+     */
+    factory { (context: ComponentContext) ->
+        OperationComponent(
+            context = context,
+            viewModel = context.getViewModel<OperationViewModel>(),
+            navigator = get<OperationNavigator> { parametersOf(context) }
         )
     }
 }

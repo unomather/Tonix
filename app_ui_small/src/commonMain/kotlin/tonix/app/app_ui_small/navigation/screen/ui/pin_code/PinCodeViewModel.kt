@@ -5,6 +5,7 @@ import org.jetbrains.compose.resources.getString
 import pro.respawn.flowmvi.api.PipelineContext
 import tonix.app.app_shared.core_ui.view_model.BaseViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeAction.NavigateBack
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeAction.NavigateToCreateWalletOperation
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeIntent.OnBackClicked
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeIntent.OnPinCodeItemClicked
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeDotsState.Default
@@ -83,6 +84,8 @@ internal class PinCodeViewModel(
                 }
                 REPEAT -> if (pinCode == previousEnteredPinCode) {
                     updateState { copy(pinCodeDotsState = Success) }
+                    delay(500)
+                    action(NavigateToCreateWalletOperation)
                 } else {
                     currentPinCodeMode = pinCodeMode
                     updateState { copy(pinCodeDotsState = Error("Pin codes do not match")) }

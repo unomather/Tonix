@@ -54,7 +54,7 @@ fun SnowflakesContainer(
         Canvas(modifier = Modifier.fillMaxSize()) {
             snowState.forEach { flake ->
                 drawCircle(
-                    color = Color.White.copy(alpha = 0.5f),
+                    color = Color.White.copy(alpha = 0.25f),
                     radius = flake.radius,
                     center = Offset(flake.x, flake.y)
                 )

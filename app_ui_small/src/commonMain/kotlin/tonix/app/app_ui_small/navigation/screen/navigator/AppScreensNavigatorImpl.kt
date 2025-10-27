@@ -14,16 +14,20 @@ import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.CreateImportWalletChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.ImportWalletChild
+import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.OperationChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.PinCodeChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.SplashChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.CreateImportWalletConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.ImportWalletConfig
+import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.OperationConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.PinCodeConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.SplashConfig
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletMainScreen
+import tonix.app.app_ui_small.navigation.screen.ui.operation.OperationComponent
+import tonix.app.app_ui_small.navigation.screen.ui.operation.OperationMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeComponent
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
@@ -55,6 +59,7 @@ internal class AppScreensNavigatorImpl(
         is CreateImportWalletConfig -> buildCreateImportWalletChild(context)
         is ImportWalletConfig -> buildImportWalletChild(context)
         is PinCodeConfig -> buildPinCodeChild(config, context)
+        is OperationConfig -> buildOperationChild(config, context)
     }
 
     /**
@@ -118,6 +123,22 @@ internal class AppScreensNavigatorImpl(
             listener = child.component
         )
     }
+    /**
+     * OPERATION
+     */
+    private fun buildOperationChild(config: OperationConfig, context: ComponentContext) = run {
+        val component by inject<OperationComponent> { parametersOf(context) }
+        OperationChild(component)
+    }
+
+    @Composable
+    private fun OperationContent(child: OperationChild) {
+        val state by child.component.subscribeState()
+        OperationMainScreen(
+            state = state,
+            listener = child.component
+        )
+    }
 
     /**
      * SCREENS NAVIGATION
@@ -128,6 +149,10 @@ internal class AppScreensNavigatorImpl(
 
     override fun toPinCode(mode: PinCodeMode) {
         navigation.pushNew(PinCodeConfig(mode))
+    }
+
+    override fun toOperation() {
+        navigation.pushNew(OperationConfig)
     }
 
     /**
@@ -149,6 +174,7 @@ internal class AppScreensNavigatorImpl(
             is CreateImportWalletChild -> CreateImportWalletContent(child)
             is ImportWalletChild -> ImportWalletContent(child)
             is PinCodeChild -> PinCodeContent(child)
+            is OperationChild -> OperationContent(child)
         }
     }
 }
