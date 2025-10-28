@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.ComponentContext
 import pro.respawn.flowmvi.compose.dsl.subscribe
 import tonix.app.app_ui_small.navigation.base.BaseChildComponent
+import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessAction.NavigateToAssets
+import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessIntent.OnContinueClicked
 
 internal class SuccessComponent(
     context: ComponentContext,
@@ -17,5 +19,16 @@ internal class SuccessComponent(
      * STATE
      */
     @Composable
-    override fun subscribeState() = subscribe()
+    override fun subscribeState() = subscribe { action ->
+        when (action) {
+            is NavigateToAssets -> navigator.toAssets()
+        }
+    }
+
+    /**
+     * LISTENER
+     */
+    override fun onContinueClick() {
+        intent(OnContinueClicked)
+    }
 }

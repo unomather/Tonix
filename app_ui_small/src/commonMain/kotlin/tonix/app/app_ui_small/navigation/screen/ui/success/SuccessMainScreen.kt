@@ -70,14 +70,14 @@ internal fun SuccessMainScreen(
             }
         )
         Title(
-            title = state.data.title,
+            state = state,
             modifier = Modifier.constrainAs(title) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
             }
         )
         Description(
-            description = state.data.description,
+            state = state,
             modifier = Modifier.constrainAs(description) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
@@ -85,7 +85,8 @@ internal fun SuccessMainScreen(
             }
         )
         Button(
-            buttonText = state.data.buttonText,
+            state = state,
+            listener = listener,
             modifier = Modifier.constrainAs(button) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
@@ -124,10 +125,10 @@ private fun Icon(modifier: Modifier) {
 @Composable
 private fun Title(
     modifier: Modifier,
-    title: StringResource
+    state: SuccessState
 ) {
     Text(
-        text = stringResource(title),
+        text = stringResource(state.data.title),
         color = colors.text,
         style = typography.h1,
         modifier = modifier.padding(top = 16.dp)
@@ -137,10 +138,10 @@ private fun Title(
 @Composable
 private fun Description(
     modifier: Modifier,
-    description: StringResource
+    state: SuccessState
 ) {
     Text(
-        text = stringResource(description),
+        text = stringResource(state.data.description),
         color = colors.text.copy(alpha = 0.5f),
         style = typography.h4.copy(fontWeight = FontWeight.Normal),
         textAlign = TextAlign.Center,
@@ -151,12 +152,13 @@ private fun Description(
 @Composable
 private fun Button(
     modifier: Modifier,
-    buttonText: StringResource
+    state: SuccessState,
+    listener: SuccessListener?
 ) {
     AppButton(
-        text = stringResource(buttonText),
+        text = stringResource(state.data.buttonText),
         state = AppButtonState.ACCENT,
-        onClick = { },
+        onClick = { listener?.onContinueClick() },
         modifier = modifier
             .padding(start = 24.dp, end = 24.dp, bottom = 16.dp)
             .fillMaxWidth()

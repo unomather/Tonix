@@ -9,6 +9,8 @@ import tonix.app.app_ui_small.navigation.AppNavigatorImpl
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensNavigator
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensNavigatorImpl
+import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsNavigator
+import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsNavigatorImpl
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletNavigatorImpl
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletNavigator
@@ -67,6 +69,14 @@ internal val moduleAppSmallUiNavigators = module {
      */
     factory<SuccessNavigator> { (context: ComponentContext) ->
         SuccessNavigatorImpl(
+            appScreensNavigator = get<AppScreensNavigator> { parametersOf(context) }
+        )
+    }
+    /**
+     * ASSETS
+     */
+    factory<AssetsNavigator> { (context: ComponentContext) ->
+        AssetsNavigatorImpl(
             appScreensNavigator = get<AppScreensNavigator> { parametersOf(context) }
         )
     }

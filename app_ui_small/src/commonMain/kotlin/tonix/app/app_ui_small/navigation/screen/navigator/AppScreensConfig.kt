@@ -20,4 +20,7 @@ internal sealed interface AppScreensConfig {
 
     @Serializable
     data class SuccessConfig(val type: SuccessScreenType): AppScreensConfig
+
+    @Serializable
+    data object AssetsConfig: AppScreensConfig
 }

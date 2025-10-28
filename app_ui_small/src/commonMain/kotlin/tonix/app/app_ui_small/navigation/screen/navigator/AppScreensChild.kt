@@ -2,6 +2,7 @@ package tonix.app.app_ui_small.navigation.screen.navigator
 
 import tonix.app.app_ui_small.navigation.base.BaseChild
 import tonix.app.app_ui_small.navigation.base.BaseChildComponent
+import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsComponent
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessComponent
@@ -12,23 +13,17 @@ internal sealed class AppScreensChild(
     open val component: BaseChildComponent<*, *, *, *>,
     override val isSystemBackEnabled: Boolean = true
 ): BaseChild(isSystemBackEnabled) {
-    data class SplashChild(
-        override val component: SplashComponent
-    ): AppScreensChild(component)
+    data class SplashChild(override val component: SplashComponent): AppScreensChild(component)
 
     data class CreateImportWalletChild(
         override val component: CreateImportWalletComponent
     ): AppScreensChild(component)
 
-    data class ImportWalletChild(
-        override val component: ImportWalletComponent
-    ): AppScreensChild(component)
+    data class ImportWalletChild(override val component: ImportWalletComponent): AppScreensChild(component)
 
-    data class PinCodeChild(
-        override val component: PinCodeComponent
-    ): AppScreensChild(component)
+    data class PinCodeChild(override val component: PinCodeComponent): AppScreensChild(component)
 
-    data class SuccessChild(
-        override val component: SuccessComponent
-    ): AppScreensChild(component)
+    data class SuccessChild(override val component: SuccessComponent): AppScreensChild(component)
+
+    data class AssetsChild(override val component: AssetsComponent): AppScreensChild(component)
 }

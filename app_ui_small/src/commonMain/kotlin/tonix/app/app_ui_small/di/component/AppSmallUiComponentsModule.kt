@@ -9,6 +9,9 @@ import tonix.app.app_ui_small.navigation.AppComponent
 import tonix.app.app_ui_small.navigation.AppNavigator
 import tonix.app.app_ui_small.navigation.AppViewModel
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig
+import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsComponent
+import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsNavigator
+import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletViewModel
@@ -83,6 +86,16 @@ internal val moduleAppSmallUiComponents = module {
             context = context,
             viewModel = context.getViewModel<SuccessViewModel> { parametersOf(successScreenData) },
             navigator = get<SuccessNavigator> { parametersOf(context) }
+        )
+    }
+    /**
+     * ASSETS
+     */
+    factory { (context: ComponentContext) ->
+        AssetsComponent(
+            context = context,
+            viewModel = context.getViewModel<AssetsViewModel>(),
+            navigator = get<AssetsNavigator> { parametersOf(context) }
         )
     }
 }
