@@ -3,7 +3,9 @@ package tonix.app.app_ui_small.navigation.screen.ui.import_wallet
 import pro.respawn.flowmvi.api.PipelineContext
 import tonix.app.app_shared.core_ui.view_model.BaseViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletAction.NavigateBack
+import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletAction.NavigateToWalletSuccessfullyImported
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletIntent.OnBackClicked
+import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletIntent.OnContinueClicked
 
 private typealias Ctx = PipelineContext<ImportWalletState, ImportWalletIntent, ImportWalletAction>
 
@@ -13,6 +15,7 @@ internal class ImportWalletViewModel: BaseViewModel<ImportWalletState, ImportWal
     override suspend fun Ctx.handleIntents(intent: ImportWalletIntent) {
         when (intent) {
             is OnBackClicked -> action(NavigateBack)
+            is OnContinueClicked -> action(NavigateToWalletSuccessfullyImported)
         }
     }
 }

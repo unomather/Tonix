@@ -6,6 +6,7 @@ import tonix.app.app_shared.core_ui.view_model.base.BaseState
 
 internal sealed interface ImportWalletIntent: BaseIntent {
     data object OnBackClicked: ImportWalletIntent
+    data object OnContinueClicked: ImportWalletIntent
 }
 
 internal sealed interface ImportWalletState: BaseState {
@@ -14,8 +15,10 @@ internal sealed interface ImportWalletState: BaseState {
 
 internal sealed interface ImportWalletAction: BaseAction {
     data object NavigateBack: ImportWalletAction
+    data object NavigateToWalletSuccessfullyImported: ImportWalletAction
 }
 
 internal interface ImportWalletListener {
     fun onBackClick()
+    fun onContinueClick()
 }

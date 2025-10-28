@@ -63,7 +63,7 @@ internal fun ImportWalletMainScreen(
                 Toolbar()
                 PasteButton()
                 InputFields()
-                ContinueButton()
+                ContinueButton(listener)
             }
         }
     }
@@ -132,11 +132,11 @@ private fun InputField(
  * CONTINUE BUTTON
  */
 @Composable
-private fun ContinueButton() {
+private fun ContinueButton(listener: ImportWalletListener?) {
     AppButton(
         text = "Continue",
         state = AppButtonState.ACCENT,
-        onClick = {},
+        onClick = { listener?.onContinueClick() },
         modifier = Modifier
             .padding(start = 24.dp, end = 24.dp, top = 8.dp, bottom = 48.dp)
             .fillMaxWidth()

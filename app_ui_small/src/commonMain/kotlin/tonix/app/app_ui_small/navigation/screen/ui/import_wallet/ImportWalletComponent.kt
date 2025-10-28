@@ -5,7 +5,9 @@ import com.arkivanov.decompose.ComponentContext
 import pro.respawn.flowmvi.compose.dsl.subscribe
 import tonix.app.app_ui_small.navigation.base.BaseChildComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletAction.NavigateBack
+import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletAction.NavigateToWalletSuccessfullyImported
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletIntent.OnBackClicked
+import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletIntent.OnContinueClicked
 
 internal class ImportWalletComponent(
     context: ComponentContext,
@@ -22,6 +24,7 @@ internal class ImportWalletComponent(
     override fun subscribeState() = subscribe { action ->
         when (action) {
             is NavigateBack -> navigator.back()
+            is NavigateToWalletSuccessfullyImported -> navigator.toWalletSuccessfullyImported()
         }
     }
 
@@ -30,5 +33,9 @@ internal class ImportWalletComponent(
      */
     override fun onBackClick() {
         intent(OnBackClicked)
+    }
+
+    override fun onContinueClick() {
+        intent(OnContinueClicked)
     }
 }
