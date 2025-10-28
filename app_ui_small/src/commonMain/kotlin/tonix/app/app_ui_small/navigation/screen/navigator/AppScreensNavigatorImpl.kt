@@ -33,6 +33,8 @@ import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashComponent
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashMainScreen
+import tonix.app.app_ui_small.navigation.screen.ui.success.data.SuccessScreenType
+import tonix.app.app_ui_small.navigation.screen.ui.success.data.getSuccessScreenDataByType
 import kotlin.getValue
 
 internal class AppScreensNavigatorImpl(
@@ -127,7 +129,8 @@ internal class AppScreensNavigatorImpl(
      * SUCCESS
      */
     private fun buildSuccessChild(config: SuccessConfig, context: ComponentContext) = run {
-        val component by inject<SuccessComponent> { parametersOf(context) }
+        val successScreenData = getSuccessScreenDataByType(config.type)
+        val component by inject<SuccessComponent> { parametersOf(context, successScreenData) }
         SuccessChild(component)
     }
 
@@ -151,8 +154,8 @@ internal class AppScreensNavigatorImpl(
         navigation.pushNew(PinCodeConfig(mode))
     }
 
-    override fun toSuccess() {
-        navigation.pushNew(SuccessConfig)
+    override fun toSuccess(type: SuccessScreenType) {
+        navigation.pushNew(SuccessConfig(type))
     }
 
     /**

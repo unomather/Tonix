@@ -17,5 +17,6 @@
     <!-- SUCCESS -->
     <string name="done">Done!</string>
     <string name="wallet_created_success">Your wallet has been successfully created.</string>
+    <string name="wallet_imported_success">Your wallet has been successfully imported.</string>
     <string name="continue">Continue</string>
 </resources>

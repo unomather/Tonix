@@ -7,6 +7,7 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.backhandler.BackHandler
 import org.koin.core.component.KoinComponent
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
+import tonix.app.app_ui_small.navigation.screen.ui.success.data.SuccessScreenType
 
 internal interface AppScreensNavigator: KoinComponent {
     /**
@@ -19,7 +20,7 @@ internal interface AppScreensNavigator: KoinComponent {
      */
     fun toImportWallet()
     fun toPinCode(mode: PinCodeMode)
-    fun toSuccess()
+    fun toSuccess(type: SuccessScreenType)
 
     /**
      * BACK NAVIGATION

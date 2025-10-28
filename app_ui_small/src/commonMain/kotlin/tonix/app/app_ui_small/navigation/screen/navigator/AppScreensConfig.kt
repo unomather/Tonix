@@ -2,6 +2,7 @@ package tonix.app.app_ui_small.navigation.screen.navigator
 
 import kotlinx.serialization.Serializable
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
+import tonix.app.app_ui_small.navigation.screen.ui.success.data.SuccessScreenType
 
 @Serializable
 internal sealed interface AppScreensConfig {
@@ -18,5 +19,5 @@ internal sealed interface AppScreensConfig {
     data class PinCodeConfig(val mode: PinCodeMode): AppScreensConfig
 
     @Serializable
-    data object SuccessConfig: AppScreensConfig
+    data class SuccessConfig(val type: SuccessScreenType): AppScreensConfig
 }

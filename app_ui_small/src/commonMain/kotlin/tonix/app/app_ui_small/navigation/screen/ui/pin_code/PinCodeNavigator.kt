@@ -1,10 +1,11 @@
 package tonix.app.app_ui_small.navigation.screen.ui.pin_code
 
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensNavigator
+import tonix.app.app_ui_small.navigation.screen.ui.success.data.SuccessScreenType.WALLET_SUCCESSFULLY_CREATED
 
 internal interface PinCodeNavigator {
     fun back()
-    fun toCreateWallet()
+    fun toWalletSuccessfullyCreated()
 }
 
 internal class PinCodeNavigatorImpl(
@@ -14,7 +15,7 @@ internal class PinCodeNavigatorImpl(
         appScreensNavigator.navigateBack()
     }
 
-    override fun toCreateWallet() {
-        appScreensNavigator.toSuccess()
+    override fun toWalletSuccessfullyCreated() {
+        appScreensNavigator.toSuccess(type = WALLET_SUCCESSFULLY_CREATED)
     }
 }

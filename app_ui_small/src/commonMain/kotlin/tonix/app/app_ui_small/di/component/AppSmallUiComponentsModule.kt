@@ -25,6 +25,7 @@ import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeMode
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashComponent
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashViewModel
+import tonix.app.app_ui_small.navigation.screen.ui.success.data.SuccessScreenData
 
 internal val moduleAppSmallUiComponents = module {
     /**
@@ -77,10 +78,10 @@ internal val moduleAppSmallUiComponents = module {
     /**
      * SUCCESS
      */
-    factory { (context: ComponentContext) ->
+    factory { (context: ComponentContext, successScreenData: SuccessScreenData) ->
         SuccessComponent(
             context = context,
-            viewModel = context.getViewModel<SuccessViewModel>(),
+            viewModel = context.getViewModel<SuccessViewModel> { parametersOf(successScreenData) },
             navigator = get<SuccessNavigator> { parametersOf(context) }
         )
     }

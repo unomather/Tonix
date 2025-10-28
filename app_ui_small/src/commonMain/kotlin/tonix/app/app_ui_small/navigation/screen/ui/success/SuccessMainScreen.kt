@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import tonix.app.app_shared.core_ui.components.animation.KottieAnimationSettings
 import tonix.app.app_shared.core_ui.components.animation.KottieAnimationView
@@ -33,10 +34,7 @@ import tonix.app.app_shared.core_ui.theme.CustomTheme.colors
 import tonix.app.app_shared.core_ui.theme.CustomTheme.shapes
 import tonix.app.app_shared.core_ui.theme.CustomTheme.typography
 import tonix.app.resources.Res
-import tonix.app.resources.`continue`
-import tonix.app.resources.done
 import tonix.app.resources.ic_done
-import tonix.app.resources.wallet_created_success
 
 @Composable
 internal fun SuccessMainScreen(
@@ -75,12 +73,14 @@ internal fun SuccessMainScreen(
             }
         )
         Title(
+            title = state.data.title,
             modifier = Modifier.constrainAs(title) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
             }
         )
         Description(
+            description = state.data.description,
             modifier = Modifier.constrainAs(description) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
@@ -88,6 +88,7 @@ internal fun SuccessMainScreen(
             }
         )
         Button(
+            buttonText = state.data.buttonText,
             modifier = Modifier.constrainAs(button) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
@@ -125,9 +126,12 @@ private fun Icon(modifier: Modifier) {
 }
 
 @Composable
-private fun Title(modifier: Modifier) {
+private fun Title(
+    modifier: Modifier,
+    title: StringResource
+) {
     Text(
-        text = stringResource(Res.string.done),
+        text = stringResource(title),
         color = colors.text,
         style = typography.h1,
         modifier = modifier.padding(top = 16.dp)
@@ -135,9 +139,12 @@ private fun Title(modifier: Modifier) {
 }
 
 @Composable
-private fun Description(modifier: Modifier) {
+private fun Description(
+    modifier: Modifier,
+    description: StringResource
+) {
     Text(
-        text = stringResource(Res.string.wallet_created_success),
+        text = stringResource(description),
         color = colors.text.copy(alpha = 0.5f),
         style = typography.h4.copy(fontWeight = FontWeight.Normal),
         textAlign = TextAlign.Center,
@@ -146,9 +153,12 @@ private fun Description(modifier: Modifier) {
 }
 
 @Composable
-private fun Button(modifier: Modifier) {
+private fun Button(
+    modifier: Modifier,
+    buttonText: StringResource
+) {
     AppButton(
-        text = stringResource(Res.string.`continue`),
+        text = stringResource(buttonText),
         state = AppButtonState.ACCENT,
         onClick = { },
         modifier = modifier

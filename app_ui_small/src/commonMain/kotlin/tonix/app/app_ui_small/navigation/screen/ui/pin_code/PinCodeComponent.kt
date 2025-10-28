@@ -25,7 +25,7 @@ internal class PinCodeComponent(
     override fun subscribeState() = subscribe { action ->
         when (action) {
             is NavigateBack -> navigator.back()
-            is NavigateToWalletSuccessfullyCreated -> navigator.toCreateWallet()
+            is NavigateToWalletSuccessfullyCreated -> navigator.toWalletSuccessfullyCreated()
         }
     }
 
