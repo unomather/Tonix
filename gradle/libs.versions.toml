@@ -19,6 +19,8 @@ essenty = "2.5.0"
 kotlin-date-time = "0.7.1"
 kotlin-serialization-json = "1.9.0"
 android-splash-screen = "1.2.0-rc01"
+kottie = "2.2.0"
+compose-constraint = "0.6.1"
 
 [bundles]
 kotlin = [
@@ -65,6 +67,10 @@ ktor-client = [
     "ktor-client-logging",
     "ktor-client-content-negotiation"
 ]
+ui = [
+    "kottie",
+    "compose-constraintLayout"
+]
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -72,6 +78,7 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 android-splash-screen = { module = "androidx.core:core-splashscreen", version.ref = "android-splash-screen" }
+compose-constraintLayout = { module = "tech.annexflow.compose:constraintlayout-compose-multiplatform", version.ref = "compose-constraint" }
 #####################
 ### GRADLE PLUGIN ###
 #####################
@@ -135,6 +142,10 @@ ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "k
 ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+##################
+### ANIMATIONS ###
+##################
+kottie = { module = "io.github.ismai117:kottie", version.ref = "kottie" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

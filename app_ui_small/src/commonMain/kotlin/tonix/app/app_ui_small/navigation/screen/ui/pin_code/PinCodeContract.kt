@@ -23,7 +23,7 @@ internal data class PinCodeState(
 
 internal sealed interface PinCodeAction: BaseAction {
     data object NavigateBack: PinCodeAction
-    data object NavigateToCreateWalletOperation: PinCodeAction
+    data object NavigateToWalletSuccessfullyCreated: PinCodeAction
 }
 
 internal sealed interface PinCodeListener {

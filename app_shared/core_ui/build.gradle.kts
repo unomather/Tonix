@@ -43,6 +43,7 @@ kotlin {
             implementation(libs.bundles.koin)
             implementation(libs.bundles.mvi)
             implementation(libs.bundles.decompose)
+            implementation(libs.bundles.ui)
         }
     }
 }

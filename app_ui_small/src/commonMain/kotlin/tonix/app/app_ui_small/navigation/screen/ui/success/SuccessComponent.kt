@@ -1,15 +1,15 @@
-package tonix.app.app_ui_small.navigation.screen.ui.operation
+package tonix.app.app_ui_small.navigation.screen.ui.success
 
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.ComponentContext
 import pro.respawn.flowmvi.compose.dsl.subscribe
 import tonix.app.app_ui_small.navigation.base.BaseChildComponent
 
-internal class OperationComponent(
+internal class SuccessComponent(
     context: ComponentContext,
-    viewModel: OperationViewModel,
-    private val navigator: OperationNavigator
-): OperationListener, BaseChildComponent<OperationState, OperationIntent, OperationAction, OperationViewModel>(
+    viewModel: SuccessViewModel,
+    private val navigator: SuccessNavigator
+): SuccessListener, BaseChildComponent<SuccessState, SuccessIntent, SuccessAction, SuccessViewModel>(
     context = context,
     viewModel = viewModel
 ) {

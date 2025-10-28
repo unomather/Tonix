@@ -14,4 +14,8 @@
     <string name="repeat_pin_code">Repeat pin code</string>
     <string name="check_pin_code">Enter pin code</string>
     <string name="forgot_pin_code">Forgot pin code?</string>
+    <!-- SUCCESS -->
+    <string name="done">Done!</string>
+    <string name="wallet_created_success">Your wallet has been successfully created.</string>
+    <string name="continue">Continue</string>
 </resources>

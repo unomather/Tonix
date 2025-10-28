@@ -18,5 +18,5 @@ internal sealed interface AppScreensConfig {
     data class PinCodeConfig(val mode: PinCodeMode): AppScreensConfig
 
     @Serializable
-    data object OperationConfig: AppScreensConfig
+    data object SuccessConfig: AppScreensConfig
 }

@@ -15,6 +15,6 @@ internal class PinCodeNavigatorImpl(
     }
 
     override fun toCreateWallet() {
-        appScreensNavigator.toOperation()
+        appScreensNavigator.toSuccess()
     }
 }

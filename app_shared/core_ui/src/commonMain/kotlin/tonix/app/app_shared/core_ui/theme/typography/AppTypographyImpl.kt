@@ -27,7 +27,7 @@ class AppTypographyImpl(
         fontWeight = FontWeight.SemiBold
     )
     override val h4 get() = TextStyle(
-        fontSize = 16.sp,
+        fontSize = 18.sp,
         lineHeight = 24.sp,
         fontFamily = fontFamily,
         fontWeight = FontWeight.SemiBold

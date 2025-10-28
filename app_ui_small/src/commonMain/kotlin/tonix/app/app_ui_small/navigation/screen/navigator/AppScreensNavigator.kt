@@ -19,7 +19,7 @@ internal interface AppScreensNavigator: KoinComponent {
      */
     fun toImportWallet()
     fun toPinCode(mode: PinCodeMode)
-    fun toOperation()
+    fun toSuccess()
 
     /**
      * BACK NAVIGATION

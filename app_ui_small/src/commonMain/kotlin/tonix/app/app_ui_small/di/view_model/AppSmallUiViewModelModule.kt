@@ -5,7 +5,7 @@ import org.koin.dsl.module
 import tonix.app.app_ui_small.navigation.AppViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletViewModel
-import tonix.app.app_ui_small.navigation.screen.ui.operation.OperationViewModel
+import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashViewModel
 
@@ -28,7 +28,7 @@ val moduleAppSmallUiViewModel = module {
      */
     factoryOf(::PinCodeViewModel)
     /**
-     * OPERATION
+     * SUCCESS
      */
-    factoryOf(::OperationViewModel)
+    factoryOf(::SuccessViewModel)
 }

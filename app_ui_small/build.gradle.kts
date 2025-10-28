@@ -54,6 +54,7 @@ kotlin {
             implementation(libs.bundles.coil)
             implementation(libs.bundles.koin)
             implementation(libs.bundles.decompose)
+            implementation(libs.bundles.ui)
         }
     }
 }

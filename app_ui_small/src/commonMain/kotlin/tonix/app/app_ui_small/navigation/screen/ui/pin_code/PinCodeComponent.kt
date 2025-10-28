@@ -5,7 +5,7 @@ import com.arkivanov.decompose.ComponentContext
 import pro.respawn.flowmvi.compose.dsl.subscribe
 import tonix.app.app_ui_small.navigation.base.BaseChildComponent
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeAction.NavigateBack
-import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeAction.NavigateToCreateWalletOperation
+import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeAction.NavigateToWalletSuccessfullyCreated
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeIntent.OnBackClicked
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeIntent.OnPinCodeItemClicked
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.data.PinCodeItem
@@ -25,7 +25,7 @@ internal class PinCodeComponent(
     override fun subscribeState() = subscribe { action ->
         when (action) {
             is NavigateBack -> navigator.back()
-            is NavigateToCreateWalletOperation -> navigator.toCreateWallet()
+            is NavigateToWalletSuccessfullyCreated -> navigator.toCreateWallet()
         }
     }
 
