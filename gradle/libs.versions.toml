@@ -19,7 +19,7 @@ essenty = "2.5.0"
 kotlin-date-time = "0.7.1"
 kotlin-serialization-json = "1.9.0"
 android-splash-screen = "1.2.0-rc01"
-kottie = "2.2.0"
+compottie = "2.0.2"
 compose-constraint = "0.6.1"
 
 [bundles]
@@ -68,7 +68,11 @@ ktor-client = [
     "ktor-client-content-negotiation"
 ]
 ui = [
-    "kottie",
+    "compottie",
+    "compottie-lite",
+    "compottie-dot",
+    "compottie-network",
+    "compottie-resources",
     "compose-constraintLayout"
 ]
 
@@ -145,7 +149,11 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 ##################
 ### ANIMATIONS ###
 ##################
-kottie = { module = "io.github.ismai117:kottie", version.ref = "kottie" }
+compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
+compottie-lite = { module = "io.github.alexzhirkevich:compottie-lite", version.ref = "compottie" }
+compottie-dot = { module = "io.github.alexzhirkevich:compottie-dot", version.ref = "compottie" }
+compottie-network = { module = "io.github.alexzhirkevich:compottie-network", version.ref = "compottie" }
+compottie-resources = { module = "io.github.alexzhirkevich:compottie-resources", version.ref = "compottie" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

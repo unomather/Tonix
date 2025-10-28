@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,10 +22,8 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
-import tonix.app.app_shared.core_ui.components.animation.KottieAnimationSettings
-import tonix.app.app_shared.core_ui.components.animation.KottieAnimationView
-import tonix.app.app_shared.core_ui.components.animation.KottieCompositionSpecType
-import tonix.app.app_shared.core_ui.components.animation.kottieAnimationFile
+import tonix.app.app_shared.core_ui.components.animation.LottieAnimationSettings
+import tonix.app.app_shared.core_ui.components.animation.LottieAnimation
 import tonix.app.app_shared.core_ui.components.button.AppButton
 import tonix.app.app_shared.core_ui.components.button.AppButtonState
 import tonix.app.app_shared.core_ui.components.image.AppImage
@@ -100,10 +97,9 @@ internal fun SuccessMainScreen(
 
 @Composable
 private fun Animation(modifier: Modifier) {
-    val file by kottieAnimationFile("anim_confetti.json")
-    KottieAnimationView(
-        type = KottieCompositionSpecType.File(file),
-        animationSettings = KottieAnimationSettings(),
+    LottieAnimation(
+        filePath = "anim_confetti.json",
+        animationSettings = LottieAnimationSettings(backgroundColor = colors.background),
         modifier = modifier
     )
 }
