@@ -53,7 +53,7 @@ internal class BottomNavigationPublisherImpl(
             when (tab) {
                 is Assets -> toAssets()
                 is Market -> toMarket()
-                is DApps -> {}
+                is DApps -> toDApps()
             }
         }
     }

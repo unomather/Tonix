@@ -26,4 +26,7 @@ internal sealed interface AppScreensConfig {
 
     @Serializable
     data object MarketConfig: AppScreensConfig
+
+    @Serializable
+    data object DAppsConfig: AppScreensConfig
 }

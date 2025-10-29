@@ -23,6 +23,7 @@ internal interface AppScreensNavigator: KoinComponent {
     fun toSuccess(type: SuccessScreenType)
     fun toAssets()
     fun toMarket()
+    fun toDApps()
 
     /**
      * BACK NAVIGATION

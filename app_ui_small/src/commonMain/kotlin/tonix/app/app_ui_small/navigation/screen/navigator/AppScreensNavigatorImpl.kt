@@ -15,6 +15,7 @@ import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.AssetsChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.CreateImportWalletChild
+import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.DAppsChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.ImportWalletChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.MarketChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.SuccessChild
@@ -22,6 +23,7 @@ import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.PinCod
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.SplashChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.AssetsConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.CreateImportWalletConfig
+import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.DAppsConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.ImportWalletConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.MarketConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.SuccessConfig
@@ -31,6 +33,8 @@ import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsComponent
 import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletMainScreen
+import tonix.app.app_ui_small.navigation.screen.ui.dapps.DAppsComponent
+import tonix.app.app_ui_small.navigation.screen.ui.dapps.DAppsMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.market.MarketComponent
@@ -73,6 +77,7 @@ internal class AppScreensNavigatorImpl(
         is SuccessConfig -> buildSuccessChild(config, context)
         is AssetsConfig -> buildAssetsChild(context)
         is MarketConfig -> buildMarketChild(context)
+        is DAppsConfig -> buildDAppsChild(context)
     }
 
     /**
@@ -189,6 +194,23 @@ internal class AppScreensNavigatorImpl(
     }
 
     /**
+     * DAPPS
+     */
+    private fun buildDAppsChild(context: ComponentContext) = run {
+        val component by inject<DAppsComponent> { parametersOf(context) }
+        DAppsChild(component)
+    }
+
+    @Composable
+    private fun DAppsContent(child: DAppsChild) {
+        val state by child.component.subscribeState()
+        DAppsMainScreen(
+            state = state,
+            listener = child.component
+        )
+    }
+
+    /**
      * SCREENS NAVIGATION
      */
     override fun toImportWallet() {
@@ -209,6 +231,10 @@ internal class AppScreensNavigatorImpl(
 
     override fun toMarket() {
         navigation.replaceAll(MarketConfig)
+    }
+
+    override fun toDApps() {
+        navigation.replaceAll(DAppsConfig)
     }
 
     /**
@@ -233,6 +259,7 @@ internal class AppScreensNavigatorImpl(
             is SuccessChild -> SuccessContent(child)
             is AssetsChild -> AssetsContent(child)
             is MarketChild -> MarketContent(child)
+            is DAppsChild -> DAppsContent(child)
         }
     }
 }

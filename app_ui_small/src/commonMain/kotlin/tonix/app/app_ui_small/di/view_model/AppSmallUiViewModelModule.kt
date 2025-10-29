@@ -8,6 +8,7 @@ import tonix.app.app_ui_small.navigation.AppViewModel
 import tonix.app.app_ui_small.navigation.bottom_navigation.BottomNavigationPublisher
 import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletViewModel
+import tonix.app.app_ui_small.navigation.screen.ui.dapps.DAppsViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.market.MarketViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessViewModel
@@ -33,4 +34,5 @@ val moduleAppSmallUiViewModel = module {
     factoryOf(::SuccessViewModel)
     factoryOf(::AssetsViewModel)
     factoryOf(::MarketViewModel)
+    factoryOf(::DAppsViewModel)
 }
