@@ -19,4 +19,10 @@
     <string name="wallet_created_success">Your wallet has been successfully created.</string>
     <string name="wallet_imported_success">Your wallet has been successfully imported.</string>
     <string name="continue">Continue</string>
+    <!-- ASSETS -->
+    <string name="current_balance">Current balance</string>
+    <string name="send">Send</string>
+    <string name="receive">Receive</string>
+    <string name="my_assets">My assets</string>
+    <string name="add_asset">Add asset</string>
 </resources>
