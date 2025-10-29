@@ -22,6 +22,7 @@ internal interface AppScreensNavigator: KoinComponent {
     fun toPinCode(mode: PinCodeMode)
     fun toSuccess(type: SuccessScreenType)
     fun toAssets()
+    fun toMarket()
 
     /**
      * BACK NAVIGATION

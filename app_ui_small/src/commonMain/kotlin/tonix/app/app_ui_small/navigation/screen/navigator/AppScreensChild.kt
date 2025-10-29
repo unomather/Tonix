@@ -4,9 +4,11 @@ import tonix.app.app_ui_small.navigation.base.BaseChild
 import tonix.app.app_ui_small.navigation.base.BaseChildComponent
 import tonix.app.app_ui_small.navigation.bottom_navigation.BottomNavigationItem
 import tonix.app.app_ui_small.navigation.bottom_navigation.BottomNavigationItem.Assets
+import tonix.app.app_ui_small.navigation.bottom_navigation.BottomNavigationItem.Market
 import tonix.app.app_ui_small.navigation.screen.ui.assets.AssetsComponent
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
+import tonix.app.app_ui_small.navigation.screen.ui.market.MarketComponent
 import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessComponent
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeComponent
 import tonix.app.app_ui_small.navigation.screen.ui.splash.SplashComponent
@@ -39,4 +41,8 @@ internal sealed class AppScreensChild(
     data class AssetsChild(
         override val component: AssetsComponent
     ): AppScreensChild(component = component, bottomNavigationTab = Assets)
+
+    data class MarketChild(
+        override val component: MarketComponent
+    ): AppScreensChild(component = component, bottomNavigationTab = Market)
 }

@@ -18,6 +18,9 @@ import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateIm
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletViewModel
+import tonix.app.app_ui_small.navigation.screen.ui.market.MarketComponent
+import tonix.app.app_ui_small.navigation.screen.ui.market.MarketNavigator
+import tonix.app.app_ui_small.navigation.screen.ui.market.MarketViewModel
 import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessComponent
 import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessNavigator
 import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessViewModel
@@ -96,6 +99,16 @@ internal val moduleAppSmallUiComponents = module {
             context = context,
             viewModel = context.getViewModel<AssetsViewModel>(),
             navigator = get<AssetsNavigator> { parametersOf(context) }
+        )
+    }
+    /**
+     * MARKET
+     */
+    factory { (context: ComponentContext) ->
+        MarketComponent(
+            context = context,
+            viewModel = context.getViewModel<MarketViewModel>(),
+            navigator = get<MarketNavigator> { parametersOf(context) }
         )
     }
 }

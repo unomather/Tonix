@@ -16,12 +16,14 @@ import org.koin.core.parameter.parametersOf
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.AssetsChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.CreateImportWalletChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.ImportWalletChild
+import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.MarketChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.SuccessChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.PinCodeChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensChild.SplashChild
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.AssetsConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.CreateImportWalletConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.ImportWalletConfig
+import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.MarketConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.SuccessConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.PinCodeConfig
 import tonix.app.app_ui_small.navigation.screen.navigator.AppScreensConfig.SplashConfig
@@ -31,6 +33,8 @@ import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateIm
 import tonix.app.app_ui_small.navigation.screen.ui.create_import_wallet.CreateImportWalletMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletComponent
 import tonix.app.app_ui_small.navigation.screen.ui.import_wallet.ImportWalletMainScreen
+import tonix.app.app_ui_small.navigation.screen.ui.market.MarketComponent
+import tonix.app.app_ui_small.navigation.screen.ui.market.MarketMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessComponent
 import tonix.app.app_ui_small.navigation.screen.ui.success.SuccessMainScreen
 import tonix.app.app_ui_small.navigation.screen.ui.pin_code.PinCodeComponent
@@ -68,6 +72,7 @@ internal class AppScreensNavigatorImpl(
         is PinCodeConfig -> buildPinCodeChild(config, context)
         is SuccessConfig -> buildSuccessChild(config, context)
         is AssetsConfig -> buildAssetsChild(context)
+        is MarketConfig -> buildMarketChild(context)
     }
 
     /**
@@ -167,6 +172,23 @@ internal class AppScreensNavigatorImpl(
     }
 
     /**
+     * MARKET
+     */
+    private fun buildMarketChild(context: ComponentContext) = run {
+        val component by inject<MarketComponent> { parametersOf(context) }
+        MarketChild(component)
+    }
+
+    @Composable
+    private fun MarketContent(child: MarketChild) {
+        val state by child.component.subscribeState()
+        MarketMainScreen(
+            state = state,
+            listener = child.component
+        )
+    }
+
+    /**
      * SCREENS NAVIGATION
      */
     override fun toImportWallet() {
@@ -183,6 +205,10 @@ internal class AppScreensNavigatorImpl(
 
     override fun toAssets() {
         navigation.replaceAll(AssetsConfig)
+    }
+
+    override fun toMarket() {
+        navigation.replaceAll(MarketConfig)
     }
 
     /**
@@ -206,6 +232,7 @@ internal class AppScreensNavigatorImpl(
             is PinCodeChild -> PinCodeContent(child)
             is SuccessChild -> SuccessContent(child)
             is AssetsChild -> AssetsContent(child)
+            is MarketChild -> MarketContent(child)
         }
     }
 }

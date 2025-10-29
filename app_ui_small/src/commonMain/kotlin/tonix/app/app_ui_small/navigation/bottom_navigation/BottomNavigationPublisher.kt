@@ -52,8 +52,8 @@ internal class BottomNavigationPublisherImpl(
         with(navigator) {
             when (tab) {
                 is Assets -> toAssets()
+                is Market -> toMarket()
                 is DApps -> {}
-                is Market -> {}
             }
         }
     }
